@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "862253784792",
+    "firebase_url": "https://let-sdesignit.firebaseio.com",
+    "project_id": "let-sdesignit",
+    "storage_bucket": "let-sdesignit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862253784792:android:d5256cd63c221372cf01ad",
+        "android_client_info": {
+          "package_name": "com.example.letsdesignit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862253784792-eumpon730nb4gcqh0ovfcm8uid2cm11s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.letsdesignit",
+            "certificate_hash": "22b59678e109f4a435a29da8b57cc30542d20f58"
+          }
+        },
+        {
+          "client_id": "862253784792-hnrb5sourtgrtn0164sa4tnbicckko40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkupZZfg_EDkhMUpkxrEPTRa-qYrmGe28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862253784792-hnrb5sourtgrtn0164sa4tnbicckko40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
