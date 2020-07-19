@@ -25,11 +25,21 @@ class CrudMethods {
     return Firestore.instance.collection(coll).snapshots();
   }
 
-  updateData(selectedDoc, newValues, coll) {
+  updateData(coll, selectedDoc, newValues) {
     Firestore.instance
         .collection(coll)
         .document(selectedDoc)
         .updateData(newValues)
+        .catchError((e) {
+      print(e);
+    });
+  }
+
+  deleteData(docId, coll) {
+    Firestore.instance
+        .collection(coll)
+        .document(docId)
+        .delete()
         .catchError((e) {
       print(e);
     });
