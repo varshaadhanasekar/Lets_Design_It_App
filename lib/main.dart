@@ -1,10 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dashboard.dart';
 import 'WeTheTeam.dart';
+import 'NewsFeeds.dart';
+import 'poll.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -12,7 +13,7 @@ void main() {
     routes: {
       '/': (context) => MyApp(), // DB Auth + NO DB --> front end
       '/one': (context) => LetsDesignIt(), // NO DB --> Front End
-      '/two': (context) => WowDesigns(), // Personal Details + Suggestions
+      '/two': (context) => NewsFeeds(), // Personal Details + Suggestions
       '/three': (context) => DashboardPage(), // DB (Display)
       '/four': (context) => Polling(), // DB
       '/five': (context) => WeTheTeam(),
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
       title: "Let's Design It",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primaryColor: Color(0xff543B7A),
         primarySwatch: Colors.deepPurple,
-        accentColor: Colors.blue[300],
+        accentColor: Colors.pink[300],
       ),
       home: Home(),
     );
@@ -175,10 +177,11 @@ class _HomeState extends State<Home> {
       body: PageView(
         children: <Widget>[
           LetsDesignIt(),
-          WowDesigns(),
-          DashboardPage(),
+          NewsFeeds(),
           Polling(),
+          DashboardPage(),
           WeTheTeam(),
+          //Maps(),
         ],
         controller: pageController,
         onPageChanged: onPageChanged,
@@ -190,20 +193,38 @@ class _HomeState extends State<Home> {
         activeColor: Theme.of(context).primaryColor,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              FontAwesomeIcons.home,
+              size: 20.0,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.whatshot),
+            icon: Icon(
+              FontAwesomeIcons.newspaper,
+              size: 20.0,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
+            icon: Icon(
+              FontAwesomeIcons.voteYea,
+              size: 20.0,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.format_list_numbered),
+            icon: Icon(
+              FontAwesomeIcons.wpforms,
+              size: 20.0,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-          )
+            icon: Icon(
+              FontAwesomeIcons.userAstronaut,
+              size: 20.0,
+            ),
+          ),
+          /*BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+          ),*/
         ],
       ),
     );
@@ -224,13 +245,24 @@ class LetsDesignIt extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Let's Design It"),
-        backgroundColor: Colors.deepPurple,
+        /*leading: IconButton(
+          icon: Icon(FontAwesomeIcons.bars),
+          iconSize: 18.0,
+          onPressed: () {},
+        ),*/
+        title: Container(
+          //alignment: Alignment.center,
+          child: Text("Let's Design It", style: TextStyle()),
+        ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add),
+            icon: Icon(
+              FontAwesomeIcons.signOutAlt,
+              size: 18.0,
+              color: Colors.white,
+            ),
             onPressed: logout,
-          ),
+          )
         ],
       ),
       body: SafeArea(
@@ -275,7 +307,7 @@ class LetsDesignIt extends StatelessWidget {
                 'Our company has taken an initiative to provide all our workmates an oppurtunity to design their own workplace.',
                 style: TextStyle(
                   fontFamily: 'SourceSansPro',
-                  fontSize: 15.0,
+                  fontSize: 13.0,
                   color: Colors.black,
                 ),
               ),
@@ -283,33 +315,6 @@ class LetsDesignIt extends StatelessWidget {
                 // Helps to leave space between two containers
                 width: double.infinity,
                 height: 10.0,
-              ),
-              Text(
-                'Features',
-                style: TextStyle(
-                  fontFamily: 'SourceSansPro',
-                  fontSize: 20.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                // Helps to leave space between two containers
-                width: double.infinity,
-                height: 10.0,
-              ),
-              Text(
-                'Observe and Suggest changes to the existing designs, Design your own designs, book a design of your choice and can do much more.',
-                style: TextStyle(
-                  fontFamily: 'SourceSansPro',
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
-              ),
-              Container(
-                // Helps to leave space between two containers
-                width: double.infinity,
-                height: 20.0,
               ),
               Text(
                 'Kickstart your awesome days of work, with your fav workplace.',
@@ -320,161 +325,6 @@ class LetsDesignIt extends StatelessWidget {
                   //fontWeight: FontWeight.bold,
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class WowDesigns extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Woah Designs"),
-        backgroundColor: Colors.deepPurple,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            verticalDirection: VerticalDirection.down,
-            children: <Widget>[
-              Text(
-                'Nature',
-                style: TextStyle(
-                  fontFamily: 'Galada',
-                  fontSize: 25.0,
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  Image(
-                    image: AssetImage('images/office jpg.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                  Image(
-                    image: AssetImage('images/office-plants_1024x1024.jpeg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                ],
-              ),
-              Container(
-                // Helps to leave space between two containers
-                width: double.infinity,
-                height: 10.0,
-              ),
-              Text(
-                'Home',
-                style: TextStyle(
-                  fontFamily: 'Galada',
-                  fontSize: 25.0,
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  Image(
-                    image: AssetImage('images/download12.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                  Image(
-                    image: AssetImage(
-                        'images/Office-of-Circle-Line-Interiors-07.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                ],
-              ),
-              Container(
-                // Helps to leave space between two containers
-                width: double.infinity,
-                height: 10.0,
-              ),
-              Text(
-                'Office',
-                style: TextStyle(
-                  fontFamily: 'Galada',
-                  fontSize: 25.0,
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  Image(
-                    image: AssetImage(
-                        'images/Low-Modern-Office-Layout-Zones-upStage-1024x683.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                  Image(
-                    image: AssetImage('images/Office-Workspace-Designs.jpg'),
-                    height: 100,
-                    width: 160,
-                  ),
-                ],
-              ),
-              Container(
-                // Helps to leave space between two containers
-                width: double.infinity,
-                height: 10.0,
-              ),
-              Text(
-                'Horror',
-                style: TextStyle(
-                  fontFamily: 'Galada',
-                  fontSize: 25.0,
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  Image(
-                    image: AssetImage('images/12.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                  Image(
-                    image: AssetImage('images/12345.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                ],
-              ),
-              Container(
-                // Helps to leave space between two containers
-                width: double.infinity,
-                height: 10.0,
-              ),
-              Text(
-                'Restaurant',
-                style: TextStyle(
-                  fontFamily: 'Galada',
-                  fontSize: 25.0,
-                  color: Colors.black,
-                ),
-              ),
-              Row(
-                children: [
-                  Image(
-                    image: AssetImage('images/123.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                  Image(
-                    image: AssetImage('images/1234.jpg'),
-                    height: 100,
-                    width: 180,
-                  ),
-                ],
-              ),
               Container(
                 // Helps to leave space between two containers
                 width: double.infinity,
@@ -486,109 +336,4 @@ class WowDesigns extends StatelessWidget {
       ),
     );
   }
-}
-
-class Polling extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() {
-    return _MyHomePageState();
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Polling Time'),
-        backgroundColor: Colors.deepPurple,
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Text(
-              "Cast your votes in choosing your fav theme for our office",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: "Galada",
-                fontSize: 25.0,
-                color: Colors.black,
-              ),
-            ),
-            _buildBody(context),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream:
-          Firestore.instance.collection("Themes").orderBy("votes").snapshots(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
-
-        return _buildList(context, snapshot.data.documents);
-      },
-    );
-  }
-
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
-    return Expanded(
-      child: ListView(
-        padding: const EdgeInsets.only(top: 20.0),
-        children:
-            snapshot.map((data) => _buildListItem(context, data)).toList(),
-      ),
-    );
-  }
-
-  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final record = Record.fromSnapshot(data);
-
-    return Padding(
-      key: ValueKey(record.name),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: ListTile(
-          title: Text(record.name),
-          trailing: Text(record.votes.toString()),
-          onTap: () =>
-              record.reference.updateData({'votes': FieldValue.increment(1)}),
-        ),
-      ),
-    );
-  }
-}
-
-class Record {
-  final String name;
-  final int votes;
-  final DocumentReference reference;
-
-  Record.fromMap(Map<String, dynamic> map, {this.reference})
-      : assert(map['name'] != null),
-        assert(map['votes'] != null),
-        name = map['name'],
-        votes = map['votes'];
-
-  Record.fromSnapshot(DocumentSnapshot snapshot)
-      : this.fromMap(snapshot.data, reference: snapshot.reference);
-
-  @override
-  String toString() => "Record<$name:$votes>";
 }

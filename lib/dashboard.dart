@@ -15,17 +15,29 @@ class _DashboardPageState extends State<DashboardPage> {
   String choice;
   String book;
   String coll;
+  String deskid, deskid1, deskname1, day;
 
   CrudMethods crudObj = new CrudMethods();
+
+  /*@override
+  void initState() {
+    crudObj.getData().then((results) {
+      setState(() {
+        cars = results;
+      });
+    });
+    super.initState();
+  }*/
+
   @override
   Widget build(BuildContext context) {
     // done
     return new Scaffold(
       appBar: AppBar(
-        title: Text('Personalise It'),
+        title: Text('Design It'),
       ),
-      body: Center(
-        child: Expanded(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Text(
@@ -39,7 +51,27 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               Container(
                 width: double.infinity,
-                height: 20.0,
+                height: 10.0,
+              ),
+              Text(
+                'Book your desk',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "SourceSansPro",
+                  fontSize: 20.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              RaisedButton(
+                child: Text('Here'),
+                onPressed: () {
+                  addDialogDB(context);
+                },
+              ),
+              Container(
+                width: double.infinity,
+                height: 10.0,
               ),
               Text(
                 'Enter your Personal Data',
@@ -137,11 +169,66 @@ class _DashboardPageState extends State<DashboardPage> {
                   addDialogB(context);
                 },
               ),
+              /*Container(
+                width: double.infinity,
+                height: 20.0,
+              ),
+              Text(
+                'Form Check',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: "SourceSansPro",
+                  fontSize: 20.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              RaisedButton(
+                child: Text('Here'),
+                onPressed: () {
+                  FormApp();
+                },
+              ),*/
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<bool> addDialogDB(BuildContext context) async {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Book your desk', style: TextStyle(fontSize: 15.0)),
+            content: Container(
+              height: 125.0,
+              width: 150.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(hintText: 'Enter Desk ID'),
+                    onChanged: (value) {
+                      this.deskid1 = value;
+                    },
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                  child: Text('Book'),
+                  textColor: Colors.blue,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    crudObj.deleteData(this.deskid, 'deskbook');
+                  })
+            ],
+          );
+        });
   }
 
   Future<bool> addDialogPD(BuildContext context) async {
@@ -423,7 +510,6 @@ class _DashboardPageState extends State<DashboardPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Job Done', style: TextStyle(fontSize: 15.0)),
-            content: Text('Added'),
             actions: <Widget>[
               FlatButton(
                 child: Text('OK'),
