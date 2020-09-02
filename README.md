@@ -1,6 +1,15 @@
 # letsdesignit
 
-A new Flutter application.
+A Flutter application that helps a company to design their workspace based on the opinion of their employees and also involves office-space management system features in it.
+
+# Output
+## Phase 01 of the app:
+
+https://www.youtube.com/watch?v=lp1tzX7KzcM
+
+## Phase 02 of the app:
+
+https://drive.google.com/drive/folders/1CEXNovAZFghn7dO62NW6uPmXYvN8BiJS?usp=sharing
 
 ## Getting Started
 
