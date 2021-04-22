@@ -30,6 +30,10 @@
           <option name="url" value="https://github.com/londonappbrewery/dicee-flutter.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/aouahib/photo_manager_demo.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\varsh\AndroidStudioProjects" />
